@@ -25,12 +25,16 @@ public class EnemyHealth : MonoBehaviour, IHealth
         m_Health = m_MaxHealth;
     }
 
+    void OnDisable()
+    {
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+    }
+
     public void DealDamage(float damage)
     {
         m_Health -= damage;
         if (m_Health <= 0)
         {
-            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         else

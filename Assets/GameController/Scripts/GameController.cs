@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject _stationPrefab;
     [SerializeField] private Vector3 _stationSpawnPosition;
     [Space]
+    [Header("UI")]
     [SerializeField] private GameObject _startCanvas;
     [SerializeField] private GameObject _loseCanvas;
     [SerializeField] private GameObject _winCanvas;

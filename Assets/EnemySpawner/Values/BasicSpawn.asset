@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: BasicSpawn
   m_EditorClassIdentifier: 
   m_Enemies:
-  - Amout: 1
+  - Amout: 5
     Prefab: {fileID: 5183212670610354604, guid: 8b21f03f3829335409cfb9d634852260,
+      type: 3}
+  - Amout: 5
+    Prefab: {fileID: 5183212670610354604, guid: e75b518280e1a414fa34cdabcc39e039,
       type: 3}
