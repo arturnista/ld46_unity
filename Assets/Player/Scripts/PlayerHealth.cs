@@ -8,10 +8,18 @@ public class PlayerHealth : MonoBehaviour, IHealth
     public delegate void TakeDamageHandler(float damage);
     public event TakeDamageHandler OnTakeDamage;
 
+    public delegate void HealHandler(float healAmount);
+    public event HealHandler OnHeal;
+
     public delegate void DeathHandler();
     public event DeathHandler OnDeath;
 
     private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] protected GameObject _explosionPrefab;
+    protected PlayerMovement _movement;
+    protected PlayerRangeAttack _attack;
+    protected PlayerMissileAttack _missileAttack;
 
     [SerializeField] protected float m_MaxHealth;
     public float MaxHealth { get => m_MaxHealth; protected set => m_MaxHealth = value; }
@@ -22,6 +30,9 @@ public class PlayerHealth : MonoBehaviour, IHealth
     void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _movement = GetComponent<PlayerMovement>();
+        _attack = GetComponent<PlayerRangeAttack>();
+        _missileAttack = GetComponent<PlayerMissileAttack>();
         m_Health = m_MaxHealth;
     }
 
@@ -42,6 +53,20 @@ public class PlayerHealth : MonoBehaviour, IHealth
                 OnDeath();
             }
             _spriteRenderer.enabled = false;
+            _movement.enabled = false;
+            _attack.enabled = false;
+            _missileAttack.enabled = false;
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        m_Health += amount;
+        if (m_Health > m_MaxHealth) m_Health = m_MaxHealth;
+
+        if (OnHeal != null)
+        {
+            OnHeal(amount);
         }
     }
 

@@ -7,7 +7,10 @@ public class PlayerRangeAttack : MonoBehaviour
 
     [SerializeField] private float _fireRate = 1f;
     [SerializeField] private GameObject _projectilePrefab = default;
+    [Space]
+    [SerializeField] private List<AudioClip> _attackSounds = default;
 
+    private AudioSource _audioSource;
     private float _fireDelay;
     private float _fireTime;
 
@@ -20,6 +23,8 @@ public class PlayerRangeAttack : MonoBehaviour
 
         _fireDelay = 1f / _fireRate;
         _fireTime = _fireDelay;
+
+        _audioSource = GetComponent<AudioSource>();
     }
     
     void Update()
@@ -61,6 +66,11 @@ public class PlayerRangeAttack : MonoBehaviour
         Vector3 spawnPosition = transform.position + (direction * 1f);
         ProjectileMovement projectileCreated = Instantiate(_projectilePrefab, spawnPosition, Quaternion.identity).GetComponent<ProjectileMovement>();
         projectileCreated.ShootAtPosition(mousePosition);
+
+        if (_attackSounds.Count > 0)
+        {
+            _audioSource.PlayOneShot(_attackSounds[Random.Range(0, _attackSounds.Count)]);
+        }
     }
 
 }

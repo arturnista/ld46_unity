@@ -14,14 +14,12 @@ public class UIMissileDisplay : MonoBehaviour
     void OnEnable()
     {
         _playerMissileAttack = GameObject.FindObjectOfType<PlayerMissileAttack>();
-        if (_playerMissileAttack != null)
-        {
-            _lastAmount = _playerMissileAttack.MissileAmount;
-        }
+        _lastAmount = 0;
     }
 
     void Update()
     {
+        if (_playerMissileAttack == null) return;
         if (_lastAmount != _playerMissileAttack.MissileAmount)
         {
             _lastAmount = _playerMissileAttack.MissileAmount;

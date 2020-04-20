@@ -19,7 +19,7 @@ public class EnemySpawnMinions : MonoBehaviour, IBecameVisibleListener
         yield return new WaitForSeconds(_spawnDelay);
         while (true)
         {
-            Instantiate(_minionPrefab, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity);
+            Instantiate(_minionPrefab, transform.position + (Vector3)(Random.insideUnitCircle * 2f), Quaternion.identity);
             yield return new WaitForSeconds(_spawnTime);
         }
     }

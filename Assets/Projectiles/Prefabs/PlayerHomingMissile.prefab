@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 7696091818127702681}
   - component: {fileID: 7696091818127702682}
   - component: {fileID: 2741761681363824999}
-  - component: {fileID: 1191029530832742909}
+  - component: {fileID: 6088033464646475501}
   - component: {fileID: 2915184961437103919}
   m_Layer: 9
   m_Name: PlayerHomingMissile
@@ -235,7 +235,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 17
---- !u!114 &1191029530832742909
+  _targetPrefab: {fileID: 8410150870374410123, guid: e73f2f09ab487c04da15c38a3327717a,
+    type: 3}
+--- !u!114 &6088033464646475501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,12 +246,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7696091818127702677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b545ce5222e496642832a77ac8e9130a, type: 3}
+  m_Script: {fileID: 11500000, guid: a90b936102d77c847abe5afce742f029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 40
-  _explosionPrefab: {fileID: 2758061801241165830, guid: aff20a6d68d775c4894c9c3fcdfe145c,
+  _explosionPrefab: {fileID: 3863246807270836229, guid: 1e38243bc4dde6f43bed8845ad630517,
     type: 3}
+  _radius: 4
 --- !u!114 &2915184961437103919
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,8 +6,8 @@ public class PlayerMissileAttack : MonoBehaviour
 {
     
     [SerializeField] private GameObject _missilePrefab = default;
-    [SerializeField] private int _missileAmount = 0;
-    public int MissileAmount { get => _missileAmount; }
+    [SerializeField] private int m_MissileAmount = 0;
+    public int MissileAmount { get => m_MissileAmount; }
     
     private Camera _camera;
 
@@ -26,8 +26,8 @@ public class PlayerMissileAttack : MonoBehaviour
 
     void Fire()
     {
-        if (_missileAmount <= 0) return;
-        _missileAmount -= 1;
+        if (m_MissileAmount <= 0) return;
+        m_MissileAmount -= 1;
         
         Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;
@@ -39,13 +39,9 @@ public class PlayerMissileAttack : MonoBehaviour
         projectileCreated.ShootAtPosition(mousePosition);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    public void AddMissile(int amount = 1)
     {
-        if (collider.gameObject.tag == "MissilePickup")
-        {
-            _missileAmount += 1;
-            Destroy(collider.gameObject);
-        }
+        m_MissileAmount += 1;
     }
 
 }

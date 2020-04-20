@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionProjectile : ProjectileAttack
+public class ExplosionProjectile : MonoBehaviour
 {
     
+    [SerializeField] protected float _damage;
+    [SerializeField] protected GameObject _explosionPrefab = default;
     [SerializeField] private float _radius;
 
     private LayerMask _collisionLayerMask;
@@ -28,7 +30,7 @@ public class ExplosionProjectile : ProjectileAttack
         }
     }
 
-    protected override void Collide(Collider2D collide)
+    public void Explode(Collider2D collide)
     {
         int results = Physics2D.OverlapCircleNonAlloc(transform.position, _radius, _collisionResults, _collisionLayerMask);
 

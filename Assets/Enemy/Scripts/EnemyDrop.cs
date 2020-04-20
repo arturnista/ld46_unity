@@ -5,8 +5,7 @@ using UnityEngine;
 public class EnemyDrop : MonoBehaviour
 {
     
-    [SerializeField] private GameObject _dropPrefab;
-    [SerializeField] [Range(0, 100)] private int _dropChance;
+    [SerializeField] private DropTable _dropTable;
 
     private EnemyHealth _health;
 
@@ -18,10 +17,10 @@ public class EnemyDrop : MonoBehaviour
 
     void HandleDeath()
     {
-        int chance = Random.Range(0, 100);
-        if (chance < _dropChance)
+        GameObject drop = _dropTable.GetDropPrefab();
+        if (drop != null)
         {
-            Instantiate(_dropPrefab, transform.position, Quaternion.identity);
+            Instantiate(drop, transform.position, Quaternion.identity);
         }
     }
 

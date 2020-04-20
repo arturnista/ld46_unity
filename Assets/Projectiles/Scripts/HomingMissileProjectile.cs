@@ -4,52 +4,29 @@ using UnityEngine;
 
 public class HomingMissileProjectile : ProjectileMovement
 {
-    
-    private Transform _target;
-    private float _targetAngle;
-    private float _currentAngle;
-    private float _acceleration;
+    [SerializeField] private GameObject _targetPrefab;
+    private GameObject _targetCreated;
+    private Vector3 _targetPosition;
+    private ExplosionProjectile _explosion;
 
     void Start()
     {
-        EnemyHealth[] healths = GameObject.FindObjectsOfType<EnemyHealth>();
-        float distance = 0f;
-
-        foreach (var health in healths)
-        {
-            if (_target == null)
-            {
-                distance = SetTarget(health.transform);
-            }
-            else if (distance > Vector3.Distance(health.transform.position, transform.position))
-            {
-                distance = SetTarget(health.transform);
-            }
-        }
-
-        _acceleration = 100f;
-        _currentAngle = transform.eulerAngles.z;
+        _explosion = GetComponent<ExplosionProjectile>();
     }
 
-    float SetTarget(Transform target)
+    public override void ShootAtPosition(Vector3 position)
     {
-        _target = target;
-        return Vector3.Distance(_target.position, transform.position);
+        base.ShootAtPosition(position);
+        _targetPosition = position;
+        _targetCreated = Instantiate(_targetPrefab, _targetPosition, Quaternion.identity);
     }
 
     void Update()
     {
-        if (_target != null)
+        if (Vector3.Distance(_targetPosition, transform.position) < 0.2f)
         {
-            Vector3 direction = (_target.position - transform.position).normalized;
-            _targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            _targetAngle -= 90f;
-            
-            _currentAngle = Mathf.MoveTowardsAngle(_currentAngle, _targetAngle, _acceleration * Time.deltaTime);
-            _acceleration += 65f * Time.deltaTime;
-
-            transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle);
-            _rigidbody.velocity = transform.up * _speed;
+            _explosion.Explode(null);
+            Destroy(_targetCreated);
         }
     }
 

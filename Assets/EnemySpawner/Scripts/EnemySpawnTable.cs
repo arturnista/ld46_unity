@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -9,22 +10,21 @@ public class EnemySpawnTable : ScriptableObject
     private List<EnemySpawnTableItem> m_Enemies;
     public List<EnemySpawnTableItem> Enemies { get { return m_Enemies; } set { m_Enemies = value; } }
 
-    private int _enemiesAmountSum;
-
-    void OnEnable()
-    {
-        _enemiesAmountSum = 0;
-        foreach (EnemySpawnTableItem item in Enemies)
-        {
-            _enemiesAmountSum += item.Amout;
-        }
-    }
-
 	/// <summary>Get an random enemy prefab.</summary>
 	/// <returns>Returns the enemy that will be spawned.</returns>
-    public GameObject GetEnemyPrefab()
+    public GameObject GetEnemyPrefab(float charge)
     {
-        int dropAmount = Random.Range(0, _enemiesAmountSum);
+        IEnumerable<EnemySpawnTableItem> enemiesAvailable = from enemy in Enemies
+                                    where enemy.Charge <= charge
+                                    select enemy;
+
+        int enemiesAmountSum = 0;
+        foreach (var enemy in enemiesAvailable)
+        {
+            enemiesAmountSum += enemy.Amout;
+        }
+
+        int dropAmount = Random.Range(0, enemiesAmountSum);
         foreach (EnemySpawnTableItem item in Enemies)
         {
             if(dropAmount <= item.Amout)

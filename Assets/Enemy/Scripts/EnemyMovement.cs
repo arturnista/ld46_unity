@@ -5,19 +5,19 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour, IEnemyReceiveTarget
 {
 
-    [SerializeField] private float m_Acceleration = default;
+    [SerializeField] protected float m_Acceleration = default;
     public float Acceleration { get => m_Acceleration; }
 
-    [SerializeField] private float m_MoveSpeed = default;
+    [SerializeField] protected float m_MoveSpeed = default;
     public float MoveSpeed { get => m_MoveSpeed; }
 
-    [SerializeField] private float _maxDistance;
+    [SerializeField] protected float _maxDistance;
 
-    private Rigidbody2D _rigidbody;
+    protected Rigidbody2D _rigidbody;
 
-    private Transform _target;
-    private float _targetSpeed;
-    private float _currentSpeed;
+    protected Transform _target;
+    protected float _targetSpeed;
+    protected float _currentSpeed;
     
     void Awake()
     {
@@ -43,8 +43,13 @@ public class EnemyMovement : MonoBehaviour, IEnemyReceiveTarget
 
     void FixedUpdate()
     {
-        Vector2 direction = (_target.position - transform.position).normalized;
+        Vector2 direction = GetDirection();
         _rigidbody.MovePosition(_rigidbody.position + (direction * _currentSpeed) * Time.fixedDeltaTime);
+    }
+
+    protected virtual Vector2 GetDirection()
+    {
+        return (_target.position - transform.position).normalized;
     }
 
     public void OnReceiveTarget(Transform target)

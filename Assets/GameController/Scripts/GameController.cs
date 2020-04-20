@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     private EnemySpawner _enemySpawner;
     private GameObject _playerObject;
     private GameObject _stationObject;
+    private AudioSource _musicSource;
 
     private enum GameState
     {
@@ -39,16 +40,18 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        _musicSource = GetComponent<AudioSource>();
+        
         _currentGameState = GameState.RUNNING;
         _enemySpawner = GameObject.FindObjectOfType<EnemySpawner>();
         
-        Button startGameButton = _startCanvas.transform.Find("StartGameButton").GetComponent<Button>();
+        Button startGameButton = _startCanvas.transform.Find("Background/StartGameButton").GetComponent<Button>();
         startGameButton.onClick.AddListener(StartGameHandler);
 
-        Button restartOnLose = _loseCanvas.transform.Find("RestartGameButton").GetComponent<Button>();
+        Button restartOnLose = _loseCanvas.transform.Find("Background/RestartGameButton").GetComponent<Button>();
         restartOnLose.onClick.AddListener(StartGameHandler);
 
-        Button restartOnWin = _winCanvas.transform.Find("RestartGameButton").GetComponent<Button>();
+        Button restartOnWin = _winCanvas.transform.Find("Background/RestartGameButton").GetComponent<Button>();
         restartOnWin.onClick.AddListener(StartGameHandler);
         
         _loseCanvas.SetActive(false);
@@ -60,7 +63,7 @@ public class GameController : MonoBehaviour
     void StartGameHandler()
     {
         CleanLastPlay();
-        Cursor.SetCursor(_mouseSprite.texture, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(_mouseSprite.texture, Vector2.one * 0.5f, CursorMode.Auto);
 
         _startCanvas.SetActive(false);
         
@@ -82,6 +85,8 @@ public class GameController : MonoBehaviour
         {
             OnGameStart();
         }
+        
+        _musicSource.Play();
     }
 
     void CleanLastPlay()
@@ -99,13 +104,14 @@ public class GameController : MonoBehaviour
             Destroy(_stationObject);
         }
 
-        GameObject[] missiles = GameObject.FindGameObjectsWithTag("MissilePickup");
+        _enemySpawner.KillAllEnemies();
+        
+        GameObject[] missiles = GameObject.FindGameObjectsWithTag("Pickup");
         foreach (var item in missiles)
         {
             Destroy(item);
         }
 
-        _enemySpawner.KillAllEnemies();
         DestroyAllProjectiles();
     }
 
@@ -113,11 +119,24 @@ public class GameController : MonoBehaviour
     {
         if (_currentGameState != GameState.RUNNING) return;
         _currentGameState = GameState.LOSE;
+        
+        StartCoroutine(LoseCoroutine());
+    }
+
+    IEnumerator LoseCoroutine()
+    {
+        _musicSource.Stop();
+        _enemySpawner.StopSpawn();
+        
+        yield return new WaitForSeconds(1.5f);
+
+        _loseCanvas.SetActive(true);
+        CanvasGroup group = _loseCanvas.GetComponent<CanvasGroup>();
+        group.alpha = 0f;
+        yield return StartCoroutine(ShowGroupCoroutine(group));
 
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        _enemySpawner.StopSpawn();
         _gameCanvas.SetActive(false);
-        _loseCanvas.SetActive(true);
     }
 
     void StationRechargeFinishHandler()
@@ -125,11 +144,35 @@ public class GameController : MonoBehaviour
         if (_currentGameState != GameState.RUNNING) return;
         _currentGameState = GameState.WIN;
         
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        StartCoroutine(WinCoroutine());
+    }
+
+    IEnumerator WinCoroutine()
+    {
+        _musicSource.Stop();
         _enemySpawner.StopSpawn();
-        // _enemySpawner.KillAllEnemies();
-        _gameCanvas.SetActive(false);
+        
+        yield return new WaitForSeconds(1.5f);
+
         _winCanvas.SetActive(true);
+        CanvasGroup group = _winCanvas.GetComponent<CanvasGroup>();
+        group.alpha = 0f;
+        yield return StartCoroutine(ShowGroupCoroutine(group));
+
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        _gameCanvas.SetActive(false);
+    }
+
+    IEnumerator ShowGroupCoroutine(CanvasGroup group)
+    {
+        float alpha = 0f;
+        group.alpha = alpha;
+        while (alpha < 1f)
+        {
+            alpha += 2f * Time.deltaTime;
+            group.alpha = alpha;
+            yield return null;
+        }
     }
 
     void DestroyAllProjectiles()

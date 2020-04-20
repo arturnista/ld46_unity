@@ -6,7 +6,10 @@ public class EnemyAttack : MonoBehaviour, IEnemyReceiveTarget
 {
     [SerializeField] private float _fireRate = 1f;
     [SerializeField] private GameObject _projectilePrefab = default;
+    [Space]
+    [SerializeField] private List<AudioClip> _attackSounds = default;
 
+    private AudioSource _audioSource;
     private float _fireDelay;
     private float _fireTime;
 
@@ -19,6 +22,8 @@ public class EnemyAttack : MonoBehaviour, IEnemyReceiveTarget
     {
         _fireDelay = 1f / _fireRate;
         _fireTime = 0f;
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnReceiveTarget(Transform target)
@@ -43,5 +48,10 @@ public class EnemyAttack : MonoBehaviour, IEnemyReceiveTarget
         Vector3 spawnPosition = transform.position + (direction * 1f);
         ProjectileMovement projectileCreated = Instantiate(_projectilePrefab, spawnPosition, Quaternion.identity).GetComponent<ProjectileMovement>();
         projectileCreated.ShootAtPosition(_target.position);
+
+        if (_attackSounds.Count > 0)
+        {
+            _audioSource.PlayOneShot(_attackSounds[Random.Range(0, _attackSounds.Count)]);
+        }
     }
 }

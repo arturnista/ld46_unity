@@ -16,12 +16,23 @@ public class UIHealthBar : MonoBehaviour
         _playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
         if (_playerHealth) 
         {
-            _playerHealth.OnTakeDamage += PlayerTakeDamageHandler;
-            PlayerTakeDamageHandler(0f);
+            _playerHealth.OnTakeDamage += HandlePlayerTakeDamage;
+            _playerHealth.OnHeal += HandlePlayerHeal;
+            UpdatePlayerHealthBarValue();
         }
     }
 
-    void PlayerTakeDamageHandler(float damage)
+    void HandlePlayerTakeDamage(float damage)
+    {
+        UpdatePlayerHealthBarValue();
+    }
+
+    void HandlePlayerHeal(float amount)
+    {
+        UpdatePlayerHealthBarValue();
+    }
+
+    void UpdatePlayerHealthBarValue()
     {
         float perc = Mathf.Clamp01(_playerHealth.Health / _playerHealth.MaxHealth);
         _valueImage.fillAmount = perc;

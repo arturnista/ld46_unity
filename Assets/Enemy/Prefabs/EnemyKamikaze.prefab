@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4673214830784941649}
   - component: {fileID: 6539466078910152008}
   - component: {fileID: 1681208736068764025}
+  - component: {fileID: 716488107689254180}
   m_Layer: 12
   m_Name: EnemyKamikaze
   m_TagString: Enemy
@@ -157,6 +158,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Time: 5
+--- !u!114 &716488107689254180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5183212670610354604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ee976902b24e248866be7aab9ab0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dropTable: {fileID: 11400000, guid: 94d33fac688489a42aac6f26d83eec5c, type: 2}
 --- !u!1 &5183212671333987599
 GameObject:
   m_ObjectHideFlags: 0

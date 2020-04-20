@@ -14,7 +14,7 @@ public class ProjectileMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void ShootAtPosition(Vector3 position)
+    public virtual void ShootAtPosition(Vector3 position)
     {
         Vector3 direction = (position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

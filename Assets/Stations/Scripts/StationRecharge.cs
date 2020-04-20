@@ -16,6 +16,7 @@ public class StationRecharge : MonoBehaviour, IHealth
     [SerializeField] private GameObject _finalDamageCircle;
 
     private float _rechargeAmount;
+    public float RechargeAmount { get => _rechargeAmount; }
 
     public float MaxHealth { get => _rechargeRequired; }
     public float Health { get => _rechargeAmount; }
