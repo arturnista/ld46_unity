@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
 
+    public delegate void GameStartHandler();
+    public event GameStartHandler OnGameStart;
+
     [Header("Player")]
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Vector3 _playerSpawnPosition;
@@ -16,7 +19,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private Vector3 _stationSpawnPosition;
     [Space]
     [Header("UI")]
+    [SerializeField] private Sprite _mouseSprite;
     [SerializeField] private GameObject _startCanvas;
+    [SerializeField] private GameObject _gameCanvas;
     [SerializeField] private GameObject _loseCanvas;
     [SerializeField] private GameObject _winCanvas;
     
@@ -45,11 +50,17 @@ public class GameController : MonoBehaviour
 
         Button restartOnWin = _winCanvas.transform.Find("RestartGameButton").GetComponent<Button>();
         restartOnWin.onClick.AddListener(StartGameHandler);
+        
+        _loseCanvas.SetActive(false);
+        _winCanvas.SetActive(false);
+        _gameCanvas.SetActive(false);
+        _startCanvas.SetActive(true);
     }
 
     void StartGameHandler()
     {
         CleanLastPlay();
+        Cursor.SetCursor(_mouseSprite.texture, Vector2.zero, CursorMode.Auto);
 
         _startCanvas.SetActive(false);
         
@@ -64,6 +75,13 @@ public class GameController : MonoBehaviour
         stationRecharge.OnFinishRecharge += StationRechargeFinishHandler;
 
         _enemySpawner.StartSpawn();
+     
+        _gameCanvas.SetActive(true);
+        
+        if(OnGameStart != null)
+        {
+            OnGameStart();
+        }
     }
 
     void CleanLastPlay()
@@ -81,6 +99,12 @@ public class GameController : MonoBehaviour
             Destroy(_stationObject);
         }
 
+        GameObject[] missiles = GameObject.FindGameObjectsWithTag("MissilePickup");
+        foreach (var item in missiles)
+        {
+            Destroy(item);
+        }
+
         _enemySpawner.KillAllEnemies();
         DestroyAllProjectiles();
     }
@@ -90,7 +114,9 @@ public class GameController : MonoBehaviour
         if (_currentGameState != GameState.RUNNING) return;
         _currentGameState = GameState.LOSE;
 
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         _enemySpawner.StopSpawn();
+        _gameCanvas.SetActive(false);
         _loseCanvas.SetActive(true);
     }
 
@@ -99,8 +125,10 @@ public class GameController : MonoBehaviour
         if (_currentGameState != GameState.RUNNING) return;
         _currentGameState = GameState.WIN;
         
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         _enemySpawner.StopSpawn();
-        _enemySpawner.KillAllEnemies();
+        // _enemySpawner.KillAllEnemies();
+        _gameCanvas.SetActive(false);
         _winCanvas.SetActive(true);
     }
 

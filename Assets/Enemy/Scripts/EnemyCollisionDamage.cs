@@ -13,7 +13,9 @@ public class EnemyCollisionDamage : MonoBehaviour
         {
             PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
             health.DealDamage(_damage);
-            Destroy(gameObject);
+            
+            EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
+            enemyHealth.Kill();
         }
     }
 

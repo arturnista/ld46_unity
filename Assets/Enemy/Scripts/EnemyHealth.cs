@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IHealth
 {
 
+    public delegate void DeathHandler();
+    public event DeathHandler OnDeath;
+
     [SerializeField] protected float m_MaxHealth;
     public float MaxHealth { get => m_MaxHealth; protected set => m_MaxHealth = value; }
 
@@ -25,17 +28,12 @@ public class EnemyHealth : MonoBehaviour, IHealth
         m_Health = m_MaxHealth;
     }
 
-    void OnDisable()
-    {
-        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-    }
-
     public void DealDamage(float damage)
     {
         m_Health -= damage;
         if (m_Health <= 0)
         {
-            Destroy(gameObject);
+            Kill();
         }
         else
         {
@@ -52,6 +50,17 @@ public class EnemyHealth : MonoBehaviour, IHealth
         }
 
         _spriteRenderer.color = _originalColor;
+    }
+
+    public void Kill()
+    {
+        if (OnDeath != null)
+        {
+            OnDeath();
+        }
+        
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
 }

@@ -22,17 +22,13 @@ public class PlayerHealth : MonoBehaviour, IHealth
     void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    void Start()
-    {
         m_Health = m_MaxHealth;
     }
-    
+
     public void DealDamage(float damage)
     {
         m_Health -= damage;
-        if (m_Health >= 0)
+        if (m_Health > 0)
         {
             if (OnTakeDamage != null)
             {

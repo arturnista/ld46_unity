@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
         EnemyHealth[] enemyHealth = GameObject.FindObjectsOfType<EnemyHealth>();
         foreach (var health in enemyHealth)
         {
-            health.DealDamage(health.MaxHealth + 1f);
+            health.Kill();
         }
 
     }

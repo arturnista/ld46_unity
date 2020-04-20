@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnMinions : MonoBehaviour
+public class EnemySpawnMinions : MonoBehaviour, IBecameVisibleListener
 {
     
     [SerializeField] private float _spawnDelay = 1f;
     [SerializeField] private float _spawnTime = 1f;
     [SerializeField] private GameObject _minionPrefab = default;
 
-    void Start()
+    public void OnBecameVisible()
     {
-        
+        StartCoroutine(SpawnCoroutine());
     }
 
     IEnumerator SpawnCoroutine()

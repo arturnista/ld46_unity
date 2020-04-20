@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5183212670610354598}
   - component: {fileID: 4673214830784941649}
   - component: {fileID: 6539466078910152008}
+  - component: {fileID: 5927834321043835946}
   m_Layer: 12
   m_Name: EnemyShooter
   m_TagString: Enemy
@@ -144,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Acceleration: 15
-  m_MoveSpeed: 5
+  m_MoveSpeed: 4.5
   _maxDistance: 4
 --- !u!114 &6539466078910152008
 MonoBehaviour:
@@ -159,6 +160,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 25
+--- !u!114 &5927834321043835946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5183212670610354604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ee976902b24e248866be7aab9ab0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dropPrefab: {fileID: 1228370096405909293, guid: a829b3d44a4d6c74e97edd26d2653d1b,
+    type: 3}
+  _dropChance: 25
 --- !u!1 &5183212671333987599
 GameObject:
   m_ObjectHideFlags: 0
