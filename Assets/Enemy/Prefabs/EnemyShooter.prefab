@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d7126109e2832f41a36aa9fb1edd8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRate: 1
+  _fireRate: 0.8
   _projectilePrefab: {fileID: 7696091818127702677, guid: 8091f8830cdc8714b9029205d71b4da5,
     type: 3}
   _attackSounds:
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Acceleration: 15
-  m_MoveSpeed: 4.5
+  m_MoveSpeed: 3.5
   _maxDistance: 4
 --- !u!114 &6539466078910152008
 MonoBehaviour:

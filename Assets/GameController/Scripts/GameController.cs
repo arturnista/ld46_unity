@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         _musicSource = GetComponent<AudioSource>();
-        
+
         _currentGameState = GameState.RUNNING;
         _enemySpawner = GameObject.FindObjectOfType<EnemySpawner>();
         
@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
     void StartGameHandler()
     {
         CleanLastPlay();
-        Cursor.SetCursor(_mouseSprite.texture, Vector2.one * 0.5f, CursorMode.Auto);
+        Cursor.SetCursor(_mouseSprite.texture, Vector2.one * 0.5f, CursorMode.ForceSoftware);
 
         _startCanvas.SetActive(false);
         

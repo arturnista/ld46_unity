@@ -17,15 +17,15 @@ MonoBehaviour:
     Charge: 0
     Prefab: {fileID: 5183212670610354604, guid: 3a9379d7babe78948b1bfda79648e6f1,
       type: 3}
-  - Amout: 10
-    Charge: 15
+  - Amout: 5
+    Charge: 20
     Prefab: {fileID: 5183212670610354604, guid: e75b518280e1a414fa34cdabcc39e039,
       type: 3}
   - Amout: 4
     Charge: 35
     Prefab: {fileID: 5183212670610354604, guid: 7a721550f5b445a4b9bb403cf1d96d13,
       type: 3}
-  - Amout: 9
+  - Amout: 7
     Charge: 70
     Prefab: {fileID: 5183212670610354604, guid: 8b21f03f3829335409cfb9d634852260,
       type: 3}

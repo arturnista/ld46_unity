@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09a7a75799fdd54d969ad144dfd44ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxHealth: 50
+  m_MaxHealth: 40
   _damageColor: {r: 1, g: 0, b: 0, a: 1}
   _explosionPrefab: {fileID: 3863246807270836229, guid: 1e38243bc4dde6f43bed8845ad630517,
     type: 3}
