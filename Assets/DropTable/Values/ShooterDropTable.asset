@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989ee98399cf8324682cae650a74c3bc, type: 3}
   m_Name: ShooterDropTable
   m_EditorClassIdentifier: 
-  m_NotDropAmount: 50
+  m_NotDropAmount: 10
   m_Items:
-  - Amout: 5
+  - Amout: 1
     Prefab: {fileID: 1228370096405909293, guid: a829b3d44a4d6c74e97edd26d2653d1b,
       type: 3}
   - Amout: 5

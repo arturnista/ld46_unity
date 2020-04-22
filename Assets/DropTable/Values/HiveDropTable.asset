@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989ee98399cf8324682cae650a74c3bc, type: 3}
   m_Name: HiveDropTable
   m_EditorClassIdentifier: 
-  m_NotDropAmount: 10
+  m_NotDropAmount: 5
   m_Items:
   - Amout: 10
     Prefab: {fileID: 1405911108341283230, guid: 92cf3c79567ab3443b5ee42af5b8927d,
