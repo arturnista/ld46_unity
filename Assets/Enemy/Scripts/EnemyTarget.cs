@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyTarget : MonoBehaviour
 {
     
-    Transform _target;
-
-    void Start()
+    private Transform _target;
+    
+    public void SetTarget(Transform target)
     {
-        _target = GameObject.FindObjectOfType<PlayerMovement>().transform;
+        _target = target;
 
         IEnemyReceiveTarget[] targetReceivers = GetComponentsInChildren<IEnemyReceiveTarget>();
         if (targetReceivers.Length > 0)

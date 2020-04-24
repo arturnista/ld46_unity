@@ -9,9 +9,9 @@ public class EnemyCollisionDamage : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "EnemyTarget")
         {
-            PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
+            IHealth health = collision.gameObject.GetComponent<IHealth>();
             health.DealDamage(_damage);
             
             EnemyHealth enemyHealth = GetComponent<EnemyHealth>();

@@ -18,9 +18,12 @@ public class EnemyLook : MonoBehaviour, IEnemyReceiveTarget
 
     void Update()
     {
-        Vector2 lookDirection = (_target.position - transform.position).normalized;
+        if (_target != null)
+        {
+            Vector2 lookDirection = (_target.position - transform.position).normalized;
 
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angle + 90f);
+            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle + 90f);
+        }
     }
 }

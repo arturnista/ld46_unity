@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000330388928393092}
-  - component: {fileID: 4000330388928393091}
   - component: {fileID: 4000330388610195242}
+  - component: {fileID: 4000330388928393091}
+  - component: {fileID: 6478308547454346257}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -32,29 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4000330388928393091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4000330388928393090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ebeb195adbd524c904a5bb50952d29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 5775253588421822506, guid: 81187ff640b1001429b7c68c7c7b9cd2,
-    type: 3}
-  _playerSpawnPosition: {x: 0, y: -5, z: 0}
-  _stationPrefab: {fileID: 4707358665043543301, guid: d1e24b5d30bd63142b86fc4707e91628,
-    type: 3}
-  _stationSpawnPosition: {x: 0, y: 0, z: 0}
-  _mouseSprite: {fileID: 21300000, guid: 4eff1d35c8fddd14d82155c93d62b599, type: 3}
-  _startCanvas: {fileID: 0}
-  _gameCanvas: {fileID: 0}
-  _loseCanvas: {fileID: 0}
-  _winCanvas: {fileID: 0}
 --- !u!82 &4000330388610195242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64,7 +42,8 @@ AudioSource:
   m_GameObject: {fileID: 4000330388928393090}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 9b7c2b346fa0ec94cb68f4e30512248f,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 0eccceac1edf4bf489b22dcbdc9647a3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
@@ -151,3 +130,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4000330388928393091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000330388928393090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ebeb195adbd524c904a5bb50952d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 5775253588421822506, guid: 81187ff640b1001429b7c68c7c7b9cd2,
+    type: 3}
+  _playerSpawnPosition: {x: 0, y: -5, z: 0}
+  _stationPrefab: {fileID: 4707358665043543301, guid: d1e24b5d30bd63142b86fc4707e91628,
+    type: 3}
+  _stationSpawnPosition: {x: 0, y: 0, z: 0}
+  _crosshairSprite: {fileID: 21300000, guid: 4eff1d35c8fddd14d82155c93d62b599, type: 3}
+  _startCanvas: {fileID: 0}
+  _gameCanvas: {fileID: 0}
+  _loseCanvas: {fileID: 0}
+  _winCanvas: {fileID: 0}
+--- !u!114 &6478308547454346257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000330388928393090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a7efeee0d7bc340a4323e3e7c4b867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _teleportPosition: {x: 0, y: -25}
+  _finalPosition: {x: 0, y: 0}
+  _finalPlayerPosition: {x: 0, y: -5}
+  _cameraPrefab: {fileID: 1916820028922530311, guid: c596367a9830f7049b7f3f478f053569,
+    type: 3}
+  _startScreenPlayerPrefab: {fileID: 5222523123839046486, guid: a0868d74d40e30c43ab6555c40916f08,
+    type: 3}
+  _startScreenPlayerPosition: {x: 25, y: 0}

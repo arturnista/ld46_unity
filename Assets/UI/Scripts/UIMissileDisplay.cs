@@ -13,6 +13,12 @@ public class UIMissileDisplay : MonoBehaviour
 
     void OnEnable()
     {
+        GameController gameController = GameObject.FindObjectOfType<GameController>();
+        gameController.OnGameStart += HandleGameStart;
+    }
+
+    void HandleGameStart()
+    {
         _playerMissileAttack = GameObject.FindObjectOfType<PlayerMissileAttack>();
         _lastAmount = 0;
     }

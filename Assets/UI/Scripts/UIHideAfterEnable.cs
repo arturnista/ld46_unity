@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(UICanvas))]
+[RequireComponent(typeof(CanvasGroup))]
 public class UIHideAfterEnable : MonoBehaviour
 {
     
     [SerializeField] private float _hideAfter = 2f;
-    [SerializeField] private float _hideRate = 2f;
+    [SerializeField] private float _hideTime = 2f;
     
-    void OnEnable()
+    private UICanvas _uiCanvas;
+
+    void Awake()
     {
-        StartCoroutine(HideCoroutine());
+        _uiCanvas = GetComponent<UICanvas>();
     }
 
-    IEnumerator HideCoroutine()
+    void OnEnable()
     {
-        CanvasGroup group = GetComponent<CanvasGroup>();
-        group.alpha = 1f;
-
-        yield return new WaitForSeconds(_hideAfter);
-
-        float alpha = 1f;
-        while (alpha > 0f)
-        {
-            alpha -= Time.deltaTime * _hideRate;
-            group.alpha = alpha;
-            yield return null;
-        }
+        _uiCanvas.Hide(_hideTime, _hideAfter, true, true);
     }
 
 }

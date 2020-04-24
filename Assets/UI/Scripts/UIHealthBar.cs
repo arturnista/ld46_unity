@@ -13,9 +13,16 @@ public class UIHealthBar : MonoBehaviour
 
     void OnEnable()
     {
+        GameController gameController = GameObject.FindObjectOfType<GameController>();
+        gameController.OnGameStart += HandleGameStart;
+    }
+
+    void HandleGameStart()
+    {   
         _playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
         if (_playerHealth) 
         {
+            _playerHealth.OnDeath += HandlePlayerDeath;
             _playerHealth.OnTakeDamage += HandlePlayerTakeDamage;
             _playerHealth.OnHeal += HandlePlayerHeal;
             UpdatePlayerHealthBarValue();
@@ -28,6 +35,11 @@ public class UIHealthBar : MonoBehaviour
     }
 
     void HandlePlayerHeal(float amount)
+    {
+        UpdatePlayerHealthBarValue();
+    }
+
+    void HandlePlayerDeath()
     {
         UpdatePlayerHealthBarValue();
     }

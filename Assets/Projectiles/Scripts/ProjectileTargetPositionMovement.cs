@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomingMissileProjectile : ProjectileMovement
+public class ProjectileTargetPositionMovement : ProjectileMovement
 {
     [SerializeField] private GameObject _targetPrefab;
     private GameObject _targetCreated;

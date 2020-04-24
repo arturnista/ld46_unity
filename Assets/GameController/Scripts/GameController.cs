@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -19,15 +17,18 @@ public class GameController : MonoBehaviour
     [SerializeField] private Vector3 _stationSpawnPosition;
     [Space]
     [Header("UI")]
-    [SerializeField] private Sprite _mouseSprite;
+    [SerializeField] private Sprite _crosshairSprite;
     [SerializeField] private GameObject _startCanvas;
     [SerializeField] private GameObject _gameCanvas;
     [SerializeField] private GameObject _loseCanvas;
     [SerializeField] private GameObject _winCanvas;
     
+    private StartScreenController _startScreenController;
     private EnemySpawner _enemySpawner;
+
     private GameObject _playerObject;
-    private GameObject _stationObject;
+    private StationRecharge _stationRecharge;
+
     private AudioSource _musicSource;
 
     private enum GameState
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour
         WIN
     }
     private GameState _currentGameState;
+    private bool _isFirstPlay;
 
     void Awake()
     {
@@ -44,26 +46,57 @@ public class GameController : MonoBehaviour
 
         _currentGameState = GameState.RUNNING;
         _enemySpawner = GameObject.FindObjectOfType<EnemySpawner>();
-        
-        Button startGameButton = _startCanvas.transform.Find("Background/StartGameButton").GetComponent<Button>();
-        startGameButton.onClick.AddListener(StartGameHandler);
-
-        Button restartOnLose = _loseCanvas.transform.Find("Background/RestartGameButton").GetComponent<Button>();
-        restartOnLose.onClick.AddListener(StartGameHandler);
-
-        Button restartOnWin = _winCanvas.transform.Find("Background/RestartGameButton").GetComponent<Button>();
-        restartOnWin.onClick.AddListener(StartGameHandler);
+        _startScreenController = GameObject.FindObjectOfType<StartScreenController>();
+        _startScreenController.OnEndStartGameAnimation += HandleEndStartGameAnimation;
+        _startScreenController.OnEndFirstAnimation += HandleEndFirstAnimation;
         
         _loseCanvas.SetActive(false);
         _winCanvas.SetActive(false);
         _gameCanvas.SetActive(false);
         _startCanvas.SetActive(true);
+
+        _isFirstPlay = true;
     }
 
-    void StartGameHandler()
+    void Start()
     {
-        CleanLastPlay();
-        Cursor.SetCursor(_mouseSprite.texture, Vector2.one * 0.5f, CursorMode.ForceSoftware);
+        _startScreenController.Idle();
+    }
+
+    public void StartGame()
+    {
+        _startCanvas.GetComponent<UICanvas>().Hide();
+        _startScreenController.StartGame();
+    }
+    
+    void HandleEndStartGameAnimation()
+    {
+        RestartGame();
+    }
+
+    void HandleEndFirstAnimation()
+    {
+        CreateStation();
+     
+        _gameCanvas.SetActive(true);
+        _gameCanvas.GetComponent<UICanvas>().Show(.5f, 0f, true);
+    }
+
+    void RestartGame()
+    {
+        if (!_isFirstPlay)
+        {
+            CleanLastPlay();
+        }
+        
+#if UNITY_WEBGL
+        float xspot = _crosshairSprite.texture.width / 2;
+        float yspot = _crosshairSprite.texture.height / 2;
+        Vector2 hotSpot = new Vector2(xspot, yspot);
+        Cursor.SetCursor(_crosshairSprite.texture, hotSpot, CursorMode.ForceSoftware);
+#else
+        Cursor.SetCursor(_crosshairSprite.texture, Vector2.zero, CursorMode.Auto);
+#endif
 
         _startCanvas.SetActive(false);
         
@@ -73,13 +106,19 @@ public class GameController : MonoBehaviour
         PlayerHealth playerHealth = _playerObject.GetComponent<PlayerHealth>();
         playerHealth.OnDeath += PlayerDeathHandler;
 
-        _stationObject = Instantiate(_stationPrefab, _stationSpawnPosition, Quaternion.identity);
-        StationRecharge stationRecharge = _stationObject.GetComponent<StationRecharge>();
-        stationRecharge.OnFinishRecharge += StationRechargeFinishHandler;
+        if (!_isFirstPlay)
+        {
+            CreateStation();
+        }
+        _stationRecharge.StartRecharging();
 
         _enemySpawner.StartSpawn();
      
-        _gameCanvas.SetActive(true);
+        if (!_isFirstPlay)
+        {
+            _gameCanvas.SetActive(true);
+            _gameCanvas.GetComponent<UICanvas>().Show(.5f, 0f, true);
+        }
         
         if(OnGameStart != null)
         {
@@ -87,21 +126,22 @@ public class GameController : MonoBehaviour
         }
         
         _musicSource.Play();
+        _isFirstPlay = false;
     }
 
     void CleanLastPlay()
     {
-        _loseCanvas.SetActive(false);
-        _winCanvas.SetActive(false);
+        _loseCanvas.GetComponent<UICanvas>().Hide();
+        _winCanvas.GetComponent<UICanvas>().Hide();
 
         if (_playerObject != null)
         {
             Destroy(_playerObject);
         }
 
-        if (_stationObject != null)
+        if (_stationRecharge.gameObject != null)
         {
-            Destroy(_stationObject);
+            Destroy(_stationRecharge.gameObject);
         }
 
         _enemySpawner.KillAllEnemies();
@@ -115,64 +155,11 @@ public class GameController : MonoBehaviour
         DestroyAllProjectiles();
     }
 
-    void PlayerDeathHandler()
+    void CreateStation()
     {
-        if (_currentGameState != GameState.RUNNING) return;
-        _currentGameState = GameState.LOSE;
-        
-        StartCoroutine(LoseCoroutine());
-    }
-
-    IEnumerator LoseCoroutine()
-    {
-        _musicSource.Stop();
-        _enemySpawner.StopSpawn();
-        
-        yield return new WaitForSeconds(1.5f);
-
-        _loseCanvas.SetActive(true);
-        CanvasGroup group = _loseCanvas.GetComponent<CanvasGroup>();
-        group.alpha = 0f;
-        yield return StartCoroutine(ShowGroupCoroutine(group));
-
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        _gameCanvas.SetActive(false);
-    }
-
-    void StationRechargeFinishHandler()
-    {
-        if (_currentGameState != GameState.RUNNING) return;
-        _currentGameState = GameState.WIN;
-        
-        StartCoroutine(WinCoroutine());
-    }
-
-    IEnumerator WinCoroutine()
-    {
-        _musicSource.Stop();
-        _enemySpawner.StopSpawn();
-        
-        yield return new WaitForSeconds(1.5f);
-
-        _winCanvas.SetActive(true);
-        CanvasGroup group = _winCanvas.GetComponent<CanvasGroup>();
-        group.alpha = 0f;
-        yield return StartCoroutine(ShowGroupCoroutine(group));
-
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        _gameCanvas.SetActive(false);
-    }
-
-    IEnumerator ShowGroupCoroutine(CanvasGroup group)
-    {
-        float alpha = 0f;
-        group.alpha = alpha;
-        while (alpha < 1f)
-        {
-            alpha += 2f * Time.deltaTime;
-            group.alpha = alpha;
-            yield return null;
-        }
+        GameObject stationObject = Instantiate(_stationPrefab, _stationSpawnPosition, Quaternion.identity);
+        _stationRecharge = stationObject.GetComponent<StationRecharge>();
+        _stationRecharge.OnFinishRecharge += StationRechargeFinishHandler;
     }
 
     void DestroyAllProjectiles()
@@ -181,6 +168,50 @@ public class GameController : MonoBehaviour
         foreach (var movement in projectileMovements)
         {
             Destroy(movement.gameObject);
+        }
+    }
+
+    void PlayerDeathHandler()
+    {
+        if (_currentGameState != GameState.RUNNING) return;
+        _currentGameState = GameState.LOSE;
+        
+        StartCoroutine(FinishCoroutine(_loseCanvas));
+    }
+
+    void StationRechargeFinishHandler()
+    {
+        if (_currentGameState != GameState.RUNNING) return;
+        _currentGameState = GameState.WIN;
+        
+        StartCoroutine(FinishCoroutine(_winCanvas));
+    }
+
+    IEnumerator FinishCoroutine(GameObject canvas)
+    {
+        _musicSource.Stop();
+        _enemySpawner.StopSpawn();
+        
+        yield return new WaitForSeconds(1.5f);
+
+        canvas.SetActive(true);
+        yield return StartCoroutine(canvas.GetComponent<UICanvas>().ShowCoroutine(1f, 0f, true));
+
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        _gameCanvas.SetActive(false);
+    }
+
+    IEnumerator ShowGroupCoroutine(GameObject canvas)
+    {
+        float alpha = 0f;
+
+        CanvasGroup group = canvas.GetComponent<CanvasGroup>();
+        group.alpha = alpha;
+        while (alpha < 1f)
+        {
+            alpha += 2f * Time.deltaTime;
+            group.alpha = alpha;
+            yield return null;
         }
     }
     

@@ -14,7 +14,7 @@ public class ExplosionProjectile : MonoBehaviour
 
     void Awake()
     {
-        _collisionResults = new Collider2D[5];
+        _collisionResults = new Collider2D[32];
         ConstructLayerMask();
     }
 
