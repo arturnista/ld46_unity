@@ -33,6 +33,7 @@ public class EnemyAttack : MonoBehaviour, IEnemyReceiveTarget
     
     void Update()
     {
+        if (_target == null) return;
         _fireTime += Time.deltaTime;
         if (_fireTime >= _fireDelay)
         {

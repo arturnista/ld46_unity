@@ -9,13 +9,19 @@ public class StationRecharge : MonoBehaviour, IHealth
     public delegate void FinishRechargeHandler();
     public event FinishRechargeHandler OnFinishRecharge;
 
+    public delegate void DeathHandler();
+    public event DeathHandler OnDeath;
+
     [Tooltip("How much recharge will increase per second")]
     [SerializeField] private float _rechargeRate = 1f;
     [SerializeField] private float _rechargeRequired = 100f;
     [SerializeField] private TextMeshProUGUI _valueText;
     [SerializeField] private GameObject _finalDamageCircle;
+    [SerializeField] private GameObject _smallExplosionPrefab;
+    [SerializeField] private GameObject _explosionPrefab;
 
     private bool _isRecharging;
+    private bool _isDead;
 
     private float _rechargeAmount;
     public float RechargeAmount { get => _rechargeAmount; }
@@ -27,6 +33,7 @@ public class StationRecharge : MonoBehaviour, IHealth
     {
         _rechargeAmount = 0f;
         _isRecharging = false;
+        _isDead = false;
     }
 
     void Update()
@@ -56,9 +63,34 @@ public class StationRecharge : MonoBehaviour, IHealth
 
     public void DealDamage(float damage)
     {
-        float actualDamage = damage / 5f;
+        if (_isDead) return;
+
+        float actualDamage = damage / 6f;
         _rechargeAmount -= actualDamage;
-        if (_rechargeAmount < 0) _rechargeAmount = 0f;
+        if (_rechargeAmount < 0)
+        {
+            _isDead = true;
+            _rechargeAmount = 0f;
+            _isRecharging = false;
+            if (OnDeath != null)
+            {
+                StartCoroutine(DeathCoroutine());
+                OnDeath();
+            }
+        }
+    }
+
+    IEnumerator DeathCoroutine()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        for (int i = 0; i < 12; i++)
+        {
+            Instantiate(_smallExplosionPrefab, transform.position + ((Vector3)Random.insideUnitCircle * 2f), Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(.1f, .3f));
+        }
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
     }
 
 }

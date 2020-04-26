@@ -65,8 +65,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2dd89bb4f9f03a345b985f1fc62ac95b, type: 2}
+  m_sharedMaterial: {fileID: 8356978951643172497, guid: 2dd89bb4f9f03a345b985f1fc62ac95b,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -167,6 +168,7 @@ GameObject:
   - component: {fileID: 115277899847006819}
   - component: {fileID: 115277899847006844}
   - component: {fileID: 115277899847006845}
+  - component: {fileID: 7863758008625196777}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -273,29 +275,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 115277899847006844}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 115277900711047808}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &7863758008625196777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115277899847006840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea43a05239c27b44a8e6cc2dba45fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &115277900711047808
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,16 +453,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Developer\n<size=30><b>Artur Nista</b></size>\n@arturnista\n\n\nArt and
-    Sounds\n<size=20>made by <b>Kenney.nl</b></size>\n\nRaving Energy (faster) by\n<size=20><b>Kevin
+  m_text: "Developer\n<size=30><b>Artur Nista</b></size>\n@arturnista\n\nArt and
+    SFX\n<size=20>made by <b>Kenney.nl</b></size>\n\nRaving Energy (faster) by\n<size=20><b>Kevin
     MacLeod\r</b></size>\nLink: https://filmmusic.io/song/5030-raving-energy-faster-\r\nLicense:
+    http://creativecommons.org/licenses/by/4.0/\n\nObjects In Motion by \n<size=20><b>Otis
+    Galloway\r\r</b></size>\nLink: https://filmmusic.io/song/6103-objects-in-motion\r\nLicense:
     http://creativecommons.org/licenses/by/4.0/\n\nExplosions SFX\n<size=20><b>Viktor.Hahn@web.de</b></size>\nis
-    licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.\nhttp://creativecommons.org/licenses/by-sa/3.0/\n\n\nYou
-    can check more games developed by me at\n<size=20><b>https://arturgamedev.com</b></size>\n\n\n<size=30><b>THANKS
-    FOR PLAYING!</b></size>"
+    licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.\nLicense:
+    http://creativecommons.org/licenses/by-sa/3.0/\n\n\n\n<size=30><b>THANKS FOR
+    PLAYING!</b></size>"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2dd89bb4f9f03a345b985f1fc62ac95b, type: 2}
+  m_sharedMaterial: {fileID: 8356978951643172497, guid: 2dd89bb4f9f03a345b985f1fc62ac95b,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -536,12 +531,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 115277901231559246}
-    characterCount: 482
+    characterCount: 565
     spriteCount: 0
-    spaceCount: 54
-    wordCount: 70
+    spaceCount: 55
+    wordCount: 79
     linkCount: 0
-    lineCount: 24
+    lineCount: 25
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -571,6 +566,7 @@ GameObject:
   - component: {fileID: 97309500602961730}
   - component: {fileID: 7261034020323029171}
   - component: {fileID: 5136344209200967085}
+  - component: {fileID: 7576048087844705385}
   m_Layer: 5
   m_Name: Itch
   m_TagString: Untagged
@@ -678,6 +674,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7576048087844705385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804044093826030636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486143a64c219b14a850202f5d1cc212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _link: https://macrok.itch.io
 --- !u!1 &3562680115288424605
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +827,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Raving Energy (faster) by\n<size=30><b>Kevin MacLeod\r</b></size>"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2dd89bb4f9f03a345b985f1fc62ac95b, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -896,7 +905,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -982,7 +991,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2dd89bb4f9f03a345b985f1fc62ac95b, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1060,7 +1069,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -1135,10 +1144,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: More games
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2dd89bb4f9f03a345b985f1fc62ac95b, type: 2}
+  m_sharedMaterial: {fileID: 8356978951643172497, guid: 2dd89bb4f9f03a345b985f1fc62ac95b,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1204,10 +1214,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3792157805941136560}
-    characterCount: 4
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1

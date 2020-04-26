@@ -16,6 +16,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject _stationPrefab;
     [SerializeField] private Vector3 _stationSpawnPosition;
     [Space]
+    [Header("Musics")]
+    [SerializeField] private AudioClip _menuMusic;
+    [SerializeField] private AudioClip _gameMusic;
+    [Space]
     [Header("UI")]
     [SerializeField] private Sprite _crosshairSprite;
     [SerializeField] private GameObject _startCanvas;
@@ -61,6 +65,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         _startScreenController.Idle();
+        PlayMenuMusic();
     }
 
     public void StartGame()
@@ -80,23 +85,22 @@ public class GameController : MonoBehaviour
      
         _gameCanvas.SetActive(true);
         _gameCanvas.GetComponent<UICanvas>().Show(.5f, 0f, true);
+        PlayGameMusic();
     }
 
     void RestartGame()
     {
         if (!_isFirstPlay)
         {
-            CleanLastPlay();
+            _loseCanvas.GetComponent<UICanvas>().Hide();
+            _winCanvas.GetComponent<UICanvas>().Hide();
+            PlayGameMusic();
         }
         
-#if UNITY_WEBGL
         float xspot = _crosshairSprite.texture.width / 2;
         float yspot = _crosshairSprite.texture.height / 2;
         Vector2 hotSpot = new Vector2(xspot, yspot);
         Cursor.SetCursor(_crosshairSprite.texture, hotSpot, CursorMode.ForceSoftware);
-#else
-        Cursor.SetCursor(_crosshairSprite.texture, Vector2.zero, CursorMode.Auto);
-#endif
 
         _startCanvas.SetActive(false);
         
@@ -125,21 +129,17 @@ public class GameController : MonoBehaviour
             OnGameStart();
         }
         
-        _musicSource.Play();
         _isFirstPlay = false;
     }
 
     void CleanLastPlay()
     {
-        _loseCanvas.GetComponent<UICanvas>().Hide();
-        _winCanvas.GetComponent<UICanvas>().Hide();
-
         if (_playerObject != null)
         {
             Destroy(_playerObject);
         }
 
-        if (_stationRecharge.gameObject != null)
+        if (_stationRecharge != null && _stationRecharge.gameObject != null)
         {
             Destroy(_stationRecharge.gameObject);
         }
@@ -160,6 +160,7 @@ public class GameController : MonoBehaviour
         GameObject stationObject = Instantiate(_stationPrefab, _stationSpawnPosition, Quaternion.identity);
         _stationRecharge = stationObject.GetComponent<StationRecharge>();
         _stationRecharge.OnFinishRecharge += StationRechargeFinishHandler;
+        _stationRecharge.OnDeath += PlayerDeathHandler;
     }
 
     void DestroyAllProjectiles()
@@ -199,6 +200,8 @@ public class GameController : MonoBehaviour
 
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         _gameCanvas.SetActive(false);
+        PlayMenuMusic();
+        CleanLastPlay();
     }
 
     IEnumerator ShowGroupCoroutine(GameObject canvas)
@@ -213,6 +216,18 @@ public class GameController : MonoBehaviour
             group.alpha = alpha;
             yield return null;
         }
+    }
+
+    void PlayGameMusic()
+    {
+        _musicSource.clip = _gameMusic;
+        _musicSource.Play();
+    }
+
+    void PlayMenuMusic()
+    {
+        _musicSource.clip = _menuMusic;
+        _musicSource.Play();
     }
     
     void OnDrawGizmos()

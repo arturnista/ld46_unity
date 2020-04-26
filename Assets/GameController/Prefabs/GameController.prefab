@@ -46,7 +46,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0eccceac1edf4bf489b22dcbdc9647a3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -148,6 +148,8 @@ MonoBehaviour:
   _stationPrefab: {fileID: 4707358665043543301, guid: d1e24b5d30bd63142b86fc4707e91628,
     type: 3}
   _stationSpawnPosition: {x: 0, y: 0, z: 0}
+  _menuMusic: {fileID: 8300000, guid: 3a1b589bfde7c304d8c3a1f9c1b5a37c, type: 3}
+  _gameMusic: {fileID: 8300000, guid: 0eccceac1edf4bf489b22dcbdc9647a3, type: 3}
   _crosshairSprite: {fileID: 21300000, guid: 4eff1d35c8fddd14d82155c93d62b599, type: 3}
   _startCanvas: {fileID: 0}
   _gameCanvas: {fileID: 0}

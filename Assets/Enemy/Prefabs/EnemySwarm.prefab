@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Acceleration: 25
   m_MoveSpeed: 4
   _maxDistance: 3
+  _refreshDirectionDelay: 0.1
 --- !u!114 &6539466078910152008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c19cdf2dd9cd741ba92f749f84d04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 3
+  _damage: 5
+  _destroyOnCollide: 1
 --- !u!1 &5183212671333987599
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +319,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

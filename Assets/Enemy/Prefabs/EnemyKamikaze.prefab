@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 5183212670610354598}
   - component: {fileID: 4673214830784941649}
   - component: {fileID: 6539466078910152008}
-  - component: {fileID: 1681208736068764025}
   - component: {fileID: 716488107689254180}
   m_Layer: 12
   m_Name: EnemyKamikaze
@@ -144,20 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c19cdf2dd9cd741ba92f749f84d04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 25
---- !u!114 &1681208736068764025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5183212670610354604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba71eb1e65b4c54aab358f000718442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Time: 5
+  _damage: 35
+  _destroyOnCollide: 1
 --- !u!114 &716488107689254180
 MonoBehaviour:
   m_ObjectHideFlags: 0

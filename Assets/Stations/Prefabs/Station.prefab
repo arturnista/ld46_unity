@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5862478690121501207}
   - component: {fileID: 2338067940339436774}
   - component: {fileID: 8670685991222126103}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4775,7 +4775,7 @@ GameObject:
   - component: {fileID: 4707358663954978708}
   - component: {fileID: 4707358663954978711}
   - component: {fileID: 4707358663954978710}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4873,7 +4873,7 @@ GameObject:
   - component: {fileID: 4707358664309482897}
   - component: {fileID: 4707358664309482903}
   - component: {fileID: 4707358664309482902}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4927,8 +4927,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: baf0f2e80a1171243a9f0d4b3b59ce1f, type: 2}
+  m_sharedMaterial: {fileID: -5536232637978213517, guid: baf0f2e80a1171243a9f0d4b3b59ce1f,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5027,7 +5028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4707358664887044586}
   - component: {fileID: 4707358664887044587}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5110,7 +5111,7 @@ GameObject:
   - component: {fileID: 2418808734864721176}
   - component: {fileID: 6326526158775579060}
   - component: {fileID: 6139023791200314267}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Station
   m_TagString: EnemyTarget
   m_Icon: {fileID: 0}
@@ -5132,6 +5133,7 @@ Transform:
   - {fileID: 4707358663954978705}
   - {fileID: 5276246478144311555}
   - {fileID: 5862478690121501207}
+  - {fileID: 2808692424793235778}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5184,10 +5186,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f3196795b76424f8fbb2d9fc3c7734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rechargeRate: 2
+  _rechargeRate: 1
   _rechargeRequired: 100
   _valueText: {fileID: 4707358664309482902}
   _finalDamageCircle: {fileID: 6586302066118033420}
+  _smallExplosionPrefab: {fileID: 3863246807270836229, guid: cafc1c0c08a541f40b59820708eae0c4,
+    type: 3}
+  _explosionPrefab: {fileID: 3863246807270836229, guid: 1e38243bc4dde6f43bed8845ad630517,
+    type: 3}
 --- !u!1 &6586302066118033420
 GameObject:
   m_ObjectHideFlags: 0
@@ -5201,7 +5207,7 @@ GameObject:
   - component: {fileID: 8711280539727770585}
   - component: {fileID: 5637110626936319585}
   - component: {fileID: 3520316916565213130}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: DamageIncrease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5322,3 +5328,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 8
+--- !u!1 &8195533168883028184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2808692424793235778}
+  - component: {fileID: 291170654388263292}
+  m_Layer: 14
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2808692424793235778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195533168883028184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4707358665043543322}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &291170654388263292
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195533168883028184}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1

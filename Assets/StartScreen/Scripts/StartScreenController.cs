@@ -75,7 +75,7 @@ public class StartScreenController : MonoBehaviour
         
         ParticleSystem system = _spaceLightsObject.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule mainModule = system.main;
-        mainModule.gravityModifier = 1f;
+        // mainModule.gravityModifier = 1f;
         _spaceLightsObject.transform.position = _teleportPosition + _spaceLightsOffset;
         
         Destroy(_startScreenPlayerCreated);

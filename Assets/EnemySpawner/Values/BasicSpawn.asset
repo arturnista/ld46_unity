@@ -29,3 +29,7 @@ MonoBehaviour:
     Charge: 70
     Prefab: {fileID: 5183212670610354604, guid: 8b21f03f3829335409cfb9d634852260,
       type: 3}
+  - Amout: 15
+    Charge: 70
+    Prefab: {fileID: 5183212670610354604, guid: b9bd435197433ec499c9081159fefaeb,
+      type: 3}

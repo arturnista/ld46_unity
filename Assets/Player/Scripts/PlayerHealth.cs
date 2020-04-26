@@ -38,6 +38,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void DealDamage(float damage)
     {
+        if (m_Health < 0) return;
+        
         m_Health -= damage;
         if (m_Health > 0)
         {
@@ -52,6 +54,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
             {
                 OnDeath();
             }
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             _spriteRenderer.enabled = false;
             _movement.enabled = false;
             _attack.enabled = false;

@@ -43,10 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924e28582180c73488e60d0e2e45d191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startDelayTime: 5
+  _startDelayTime: 4
   _startSpawnTime: 2
-  _finalSpawnTime: 1.3
-  _accelerationSpawnTime: 0.03
+  _finalSpawnTime: 1
+  _accelerationSpawnTime: 0.04
+  _enemiesTargetStation: 0
   _spawnRadius: 1.8
   _enemies: {fileID: 11400000, guid: 4a0dd7c320b1b114b9697bff18e389fb, type: 2}
   _meteorPrefab: {fileID: 6275663553500930576, guid: 70016c6b277dd814e980abeb68c37043,

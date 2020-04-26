@@ -9,10 +9,10 @@ public class EnemyHealth : MonoBehaviour, IHealth
     public event DeathHandler OnDeath;
 
     [SerializeField] protected float m_MaxHealth;
-    public float MaxHealth { get => m_MaxHealth; protected set => m_MaxHealth = value; }
+    public float MaxHealth { get => m_MaxHealth; set => m_MaxHealth = value; }
 
     protected float m_Health;
-    public float Health { get => m_Health; protected set => m_Health = value; }
+    public float Health { get => m_Health; set => m_Health = value; }
 
     [SerializeField] protected Color _damageColor;
     [SerializeField] protected GameObject _explosionPrefab;

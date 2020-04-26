@@ -525,40 +525,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6536406796506723719}
     m_Modifications:
-    - target: {fileID: 449878908298524793, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 449878908298524793, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 449878908298524793, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 449878908298524793, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 449878908298524793, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1727955384521344522, guid: 184596202a197b140b732962c748870f,
         type: 3}
       propertyPath: m_Name
       value: StartCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 1727955384521344522, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1871907436913381966, guid: 184596202a197b140b732962c748870f,
         type: 3}
@@ -664,31 +634,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5573416484936186710, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702273840651831014, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702273840651831014, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702273840651831014, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702273840651831014, guid: 184596202a197b140b732962c748870f,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184596202a197b140b732962c748870f, type: 3}

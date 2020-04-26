@@ -6,6 +6,7 @@ public class EnemyCollisionDamage : MonoBehaviour
 {
     
     [SerializeField] private float _damage = 15f;
+    [SerializeField] private bool _destroyOnCollide = true;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -14,8 +15,11 @@ public class EnemyCollisionDamage : MonoBehaviour
             IHealth health = collision.gameObject.GetComponent<IHealth>();
             health.DealDamage(_damage);
             
-            EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
-            enemyHealth.Kill();
+            if (_destroyOnCollide)
+            {
+                EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
+                enemyHealth.Kill();
+            }
         }
     }
 
