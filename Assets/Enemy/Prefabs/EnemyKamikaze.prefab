@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Acceleration: 3
   m_MoveSpeed: 16
   _maxDistance: 0
+  _refreshDirectionDelay: 0.1
 --- !u!114 &6539466078910152008
 MonoBehaviour:
   m_ObjectHideFlags: 0

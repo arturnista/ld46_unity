@@ -10,11 +10,19 @@ public class UIHealthBar : MonoBehaviour
 
     private PlayerHealth _playerHealth;
     private float _lastHealth;
+    
+    private GameController _gameController;
 
     void OnEnable()
     {
-        GameController gameController = GameObject.FindObjectOfType<GameController>();
-        gameController.OnGameStart += HandleGameStart;
+        _gameController = GameObject.FindObjectOfType<GameController>();
+        _gameController.OnGameStart += HandleGameStart;
+        _valueImage.fillAmount = 1f;
+    }
+
+    void OnDisable()
+    {
+        _gameController.OnGameStart -= HandleGameStart;
     }
 
     void HandleGameStart()

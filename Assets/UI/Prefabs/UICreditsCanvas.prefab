@@ -424,8 +424,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 35}
-  m_SizeDelta: {x: 0, y: -70}
+  m_AnchoredPosition: {x: 0, y: 32.5}
+  m_SizeDelta: {x: 0, y: -75}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &115277901231559245
 CanvasRenderer:
@@ -460,8 +460,7 @@ MonoBehaviour:
     Galloway\r\r</b></size>\nLink: https://filmmusic.io/song/6103-objects-in-motion\r\nLicense:
     http://creativecommons.org/licenses/by/4.0/\n\nExplosions SFX\n<size=20><b>Viktor.Hahn@web.de</b></size>\nis
     licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.\nLicense:
-    http://creativecommons.org/licenses/by-sa/3.0/\n\n\n\n<size=30><b>THANKS FOR
-    PLAYING!</b></size>"
+    http://creativecommons.org/licenses/by-sa/3.0/\n\n<size=30><b>THANKS FOR PLAYING!</b></size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dd89bb4f9f03a345b985f1fc62ac95b, type: 2}
   m_sharedMaterial: {fileID: 8356978951643172497, guid: 2dd89bb4f9f03a345b985f1fc62ac95b,
@@ -497,7 +496,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -531,12 +530,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 115277901231559246}
-    characterCount: 565
+    characterCount: 563
     spriteCount: 0
-    spaceCount: 55
+    spaceCount: 53
     wordCount: 79
     linkCount: 0
-    lineCount: 25
+    lineCount: 23
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
